@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
+  <script src="js/main.js"></script>
+</head>
+
+<body>
+  <div id="container">
+    <h1>answer side</h1>
+    <table>
+      <tr>
+        <td>
+          <textarea id="feed_offer_textarea" cols="30" rows="30"></textarea>
+          <br />
+          <button id="feed_offer">feed_offer</button>
+        </td>
+        <td>
+          <textarea id="answer_textarea" cols="30" rows="30"></textarea>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <textarea id="local_ice" cols="30" rows="30"></textarea>
+        </td>
+        <td>
+          <textarea id="feed_ice" cols="30" rows="30"></textarea>
+          <br />
+          <button id="feed_ice_button">feed_ice</button>
+        </td>
+      </tr>
+    </table>
+
+    <video id="remoteVideo" autoplay></video>
+</body>
+</html>
