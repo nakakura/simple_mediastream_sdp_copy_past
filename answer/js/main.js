@@ -48,27 +48,36 @@ function start() {
 }
 
 function feedOffer() {
-  let text = feedOfferTextArea.value;
-  let desc = JSON.parse(text);
+    let text = feedOfferTextArea.value;
+    let desc = JSON.parse(text);
 
-  let servers = null;
-  pc = new RTCPeerConnection(servers);
-  pc.onicecandidate = function(e) {
-    onIceCandidate(pc, e);
-  };
-  pc.ontrack = gotRemoteStream;
+    let servers = {
+        'iceServers': [
+            {
+                'url': 'stun:stun.l.google.com:19302'
+            }
+        ]
+    };
+    pc = new RTCPeerConnection(servers);
+    pc.onicecandidate = function (e) {
+        onIceCandidate(pc, e);
+    };
+    pc.ontrack = gotRemoteStream;
 
-  pc.setRemoteDescription(desc).then(
-      function() {},
-      function (err) {}
-  );
-  // Since the 'remote' side has no media stream we need
-  // to pass in the right constraints in order for it to
-  // accept the incoming offer of audio and video.
-  pc.createAnswer().then(
-      onCreateAnswerSuccess,
-      function (err) {}
-  );
+    pc.setRemoteDescription(desc).then(
+        function () {
+        },
+        function (err) {
+        }
+    );
+    // Since the 'remote' side has no media stream we need
+    // to pass in the right constraints in order for it to
+    // accept the incoming offer of audio and video.
+    pc.createAnswer().then(
+        onCreateAnswerSuccess,
+        function (err) {
+        }
+    );
 }
 
 function gotRemoteStream(e) {

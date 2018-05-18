@@ -74,7 +74,13 @@ function call() {
     }
     if (audioTracks.length > 0) {
     }
-    let servers = null;
+    let servers = {
+        'iceServers': [
+            {
+                'url': 'stun:stun.l.google.com:19302'
+            }
+        ]
+    };
     pc = new RTCPeerConnection(servers);
     pc.onicecandidate = function(e) {
         onIceCandidate(pc, e);
@@ -127,4 +133,3 @@ function feedIce() {
 function onIceCandidate(pc, event) {
     iceTextArea.innerText = iceTextArea.value + "\n" + JSON.stringify(event.candidate);
 }
-
